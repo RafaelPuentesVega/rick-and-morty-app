@@ -1,0 +1,73 @@
+<!-- Filtros -->
+<mat-accordion class="headers-align" multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Filtros
+            </mat-panel-title>
+            <mat-panel-description>
+                &nbsp;
+                <mat-icon>filter_list</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="flex-container">
+            <div class="flex-item-60">
+                <mat-form-field class="input-wide">
+                    <mat-label>Buscar...</mat-label>
+                    <input matInput [(ngModel)]="searchName" type="text" id="searchName" maxlength="50"
+                        (input)="getLocations()">
+                </mat-form-field>
+            </div>
+            <div class="flex-item-20">
+                <mat-form-field class="input-wide">
+                    <mat-label>{{opcionOne}}</mat-label>
+                    <input matInput [(ngModel)]="searchTipo" type="text" id="searchTipo" maxlength="50"
+                        (input)="getLocations()">
+                </mat-form-field>
+            </div>
+        </div>
+
+    </mat-expansion-panel>
+
+</mat-accordion>
+<!-- Tabla -->
+<div *ngIf="dataSource">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+        
+        <ng-container matColumnDef="Nombre">
+          <th mat-header-cell *matHeaderCellDef><strong>NOMBRE</strong></th>
+          <td mat-cell *matCellDef="let element">{{element.name}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Tipo">
+          <th mat-header-cell *matHeaderCellDef><strong>TIPO</strong></th>
+          <td mat-cell *matCellDef="let element">{{element.type}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Dimensiones">
+          <th mat-header-cell *matHeaderCellDef><strong>DIMENSIONES</strong></th>
+          <td mat-cell *matCellDef="let element">{{element.dimension}}</td>
+        </ng-container>
+      
+        <ng-container matColumnDef="Acciones">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element"></td>
+        </ng-container>
+      
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" style="background-color: rgb(204, 204, 204);"></tr>
+      
+        <tr mat-row *matRowDef="let element; columns: displayedColumns;" [routerLink]="['/locations', element.id]" class="table-body"></tr>
+      </table>
+      
+    <!-- Paginador -->
+    <div *ngIf="perPage !== 0">
+        <mat-paginator [length]="totalItems" [pageSize]="perPage " (page)="getLocations($event.pageIndex + 1)">
+        </mat-paginator>
+    </div>
+</div>
+<div *ngIf="!dataSource">
+    <p>
+        Sin resultados
+    </p>
+</div>

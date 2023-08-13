@@ -1,0 +1,52 @@
+.live-avatar {
+  background-size: cover;
+  background-image: url("../../../assets/img/live.png");
+}
+.dead-avatar {
+  background-image: url("../../../assets/img/dead.jpg");
+  background-size: cover;
+}
+.default-avatar {
+  background-image: url("../../../assets/img/default.jpg");
+  background-size: cover;
+}
+
+.horizontal-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 0 -12px;
+}
+
+.example-card {
+  flex: 0 0 calc(20% - 24px);
+  max-width: calc(20% - 24px);
+  border-radius: 8px;
+  box-shadow: 0px 25px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.example-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 0px 51px 0px rgba(0, 0, 0, 0.64);
+}
+
+.example-card img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+.action-buttons {
+  padding-bottom: 20px;
+}
+mat-paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 16px;
+}

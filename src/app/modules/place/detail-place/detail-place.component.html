@@ -1,0 +1,20 @@
+<mat-card class="card" >
+    <fieldset *ngIf="locations">
+        <legend>
+            <h4 >Datos del lugar</h4>
+        </legend>
+        <br>
+        <div class="container">
+            <h1>{{ locations.name }}</h1>
+            <h3><strong>Tipo:</strong> {{ locations.type }}</h3>
+            <h3><strong>Dimensiones:</strong> {{ locations.dimension }}</h3>
+            <h3><strong>Cantidad Residentes:</strong> {{ countCharacter }}</h3>
+        </div>
+    </fieldset>
+    <div *ngIf="!locations">
+        <p>Cargando...</p>
+    </div>
+</mat-card>
+<div *ngIf="validaCharacter ">
+    <app-characters [dataIdArray]="arrayCharacter"></app-characters>
+</div>

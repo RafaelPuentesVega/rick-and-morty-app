@@ -1,0 +1,76 @@
+<!-- Filtros -->
+<mat-accordion *ngIf="this.dataIdArray.length == 0" class="headers-align" multi>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>
+                Filtros
+            </mat-panel-title>
+            <mat-panel-description>
+                &nbsp;
+                <mat-icon>filter_list</mat-icon>
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="flex-container">
+            <div class="flex-item-60">
+                <mat-form-field class="input-wide">
+                    <mat-label>Buscar...</mat-label>
+                    <input matInput [(ngModel)]="searchName" type="text" id="searchName" maxlength="50"
+                        (input)="getCharacters()">
+                </mat-form-field>
+            </div>
+            <div class="flex-item-20">
+                <mat-form-field>
+                    <mat-label>{{opcionOne}}</mat-label>
+                    <mat-select [(ngModel)]="selectedOpcionOne" id="selectedOpcionOne"
+                        (selectionChange)="getCharacters()">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option *ngFor="let status of arrayStatus" value="{{status}}">{{status}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div class="flex-item-20">
+                <mat-form-field>
+                    <mat-label>{{opcionTwo}}</mat-label>
+                    <mat-select  [(ngModel)]="selectedOpcionTwo" id="selectedOpcionTwo"
+                    (selectionChange)="getCharacters()">
+                        <mat-option value="">Seleccione</mat-option>
+                        <mat-option *ngFor="let gender of arrayGenero" value="{{gender}}">{{gender}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+
+    </mat-expansion-panel>
+
+</mat-accordion>
+<!-- Tarjetas -->
+<div *ngIf="characters" class="horizontal-cards-container">
+
+    <mat-card class="example-card" *ngFor="let character of characters" [routerLink]="['/characters', character.id]">
+        <mat-card-header>
+            <div mat-card-avatar [ngClass]="getAvatarClass(character.status)">
+            </div>
+            <mat-card-title>{{ character.name }}</mat-card-title>
+            <mat-card-subtitle>{{character.status}}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image [src]="character.image" alt="{{ character.name }}">
+        <mat-card-content>
+            <p>
+            </p>
+        </mat-card-content>
+        <button mat-button>ver</button>
+    </mat-card>
+
+</div>
+<div  *ngIf="!characters">
+    <p>
+        Sin resultados
+    </p>
+</div>
+<div *ngIf="perPage !== 0">
+    <mat-paginator [length]="totalItems" [pageSize]="perPage " (page)="getCharacters($event.pageIndex + 1)">
+    </mat-paginator>
+</div>

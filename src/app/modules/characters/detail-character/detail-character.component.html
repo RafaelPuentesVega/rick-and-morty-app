@@ -1,0 +1,29 @@
+<mat-card class="card" >
+
+    <mat-grid-list cols="2" rowHeight="2:1.5" *ngIf="character">
+        <mat-grid-tile >
+
+                <fieldset>
+                    <legend>
+                        <h4 >Datos del personaje</h4>
+                    </legend>
+                    <br>
+                    <div class="container">
+                        <h1>{{ character.name }}</h1>
+                        <h3><strong>Genero:</strong> {{ character.gender }}</h3>
+                        <h3><strong>Especie:</strong> {{ character.species }}</h3>
+                        <h3><strong>Ubicacion:</strong> {{ character.location.name }}</h3>
+                        <h3><strong>Origen:</strong> {{ character.origin.name }}</h3>
+                        <h3><strong>Cant Episodios:</strong> {{ countEpisodes }}</h3>
+                        <h3><strong>Estado:</strong> {{ character.status  }}</h3>
+                    </div>
+                </fieldset>
+        </mat-grid-tile>
+        <mat-grid-tile rowspan="1">
+            <img [src]="character.image" class="character-details-image">
+        </mat-grid-tile>
+    </mat-grid-list>
+    <div *ngIf="!character">
+        <p>Cargando...</p>
+    </div>
+</mat-card>
