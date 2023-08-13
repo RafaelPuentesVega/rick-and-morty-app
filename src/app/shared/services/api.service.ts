@@ -1,6 +1,7 @@
 import { Injectable, OnInit } from '@angular/core';
 import {HttpClient , HttpParams} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import { environment } from 'src/environments/environment';
 
 import { catchError, finalize } from 'rxjs/operators';
 
@@ -11,7 +12,7 @@ import { catchError, finalize } from 'rxjs/operators';
 export class ApiService {
   constructor(private http: HttpClient) { }
 
-  api_url = 'https://rickandmortyapi.com/api/';
+  api_url = environment.apiUrl;
 
   /**
  * GET Http Request
